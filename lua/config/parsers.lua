@@ -1,0 +1,1 @@
+/nix/store/pics12ybcqw714lalc29qa1pg3qncf50-home-manager-files/projects/nvim/lua/config/parsers.lua
