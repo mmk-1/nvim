@@ -44,20 +44,14 @@ function M.config()
 
 	cmp.setup({
 		sources = {
-			{ name = "luasnip" },
-			{ name = "nvim_lsp" },
-			{ name = "buffer" },
-			{ name = "path" },
-			{ name = "cmdline" },
+			{ name = "luasnip", keyword_length = 2 },
+			{ name = "nvim_lsp", keyword_length = 2 },
+			{ name = "buffer", keyword_length = 2 },
+			{ name = "path", keyword_length = 2 },
+			{ name = "cmdine" },
 		},
+
 		mapping = cmp.mapping.preset.insert({
-			-- ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-			-- ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-			-- ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-			-- ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-			-- ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-			-- ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-			-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 			["<C-e>"] = cmp.mapping({
 				i = cmp.mapping.abort(),
 				c = cmp.mapping.close(),
@@ -74,10 +68,8 @@ function M.config()
 					luasnip.expand_or_jump()
 				elseif check_backspace() then
 					fallback()
-				-- require("neotab").tabout()
 				else
 					fallback()
-					-- require("neotab").tabout()
 				end
 			end, {
 				"i",
@@ -112,6 +104,20 @@ function M.config()
 				return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
 			end
 		end,
+	})
+
+	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{ name = "path" },
+		}, {
+			{
+				name = "cmdline",
+				option = {
+					ignore_cmds = { "Man", "!" },
+				},
+			},
+		}),
 	})
 end
 
