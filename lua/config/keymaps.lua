@@ -14,5 +14,4 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Save like Emacs!
-keymap('n', '<C-x><C-s>', ':w<CR>', opts)
-
+keymap("n", "<C-x><C-s>", ":w<CR>", opts)
