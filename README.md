@@ -1,2 +1,5 @@
 TODOs:
-- Obsidian keybindings
+- Obsidian:
+    - Templates
+    - New notes directory
+    - LaTex
