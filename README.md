@@ -3,3 +3,4 @@ TODOs:
     - Templates
     - New notes directory
     - LaTex
+- Remote development
