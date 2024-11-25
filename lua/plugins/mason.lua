@@ -18,9 +18,9 @@ function M.config()
 		"jsonls",
 
         -- Formatters
-        "stylua",
-        "alejandra",
-        "prettier",
+        -- "stylua",
+        -- "alejandra",
+        -- "prettier",
 	}
 
     require("mason").setup {
