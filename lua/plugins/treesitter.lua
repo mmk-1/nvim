@@ -1,15 +1,14 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	-- main = "nvim-treesitter.configs",
-	dir = "~/.local/share/nvim/nix/nvim-treesitter/",
-	dev = true,
 	event = { "BufReadPre", "BufNewFile" },
+	build = ":TSUpdate",
 }
 
 function M.config()
 	local treesitter = require("nvim-treesitter.configs")
 
 	treesitter.setup({
+		ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" },
 		indent = {
 			enable = true,
 		},
