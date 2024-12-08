@@ -55,3 +55,18 @@ vim.opt.shortmess:append("c")
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
+
+-- Create autocommands to check for file changes
+vim.o.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+	pattern = "*",
+	command = "checktime",
+})
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	pattern = "*",
+	callback = function()
+		vim.cmd('echohl WarningMsg | echo "File updated on disk. Buffer reloaded." | echohl None')
+	end,
+})

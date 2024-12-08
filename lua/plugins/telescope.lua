@@ -9,7 +9,7 @@ local M = {
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find files" },
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep (Project dir)" },
 		{ "<leader>pp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-		{ "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+		{ "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
 	},
 }
 
