@@ -65,6 +65,15 @@ function M.config()
             require('telescope.builtin').find_files({ cwd = home })
           end
         },
+        {
+          icon = '󰗼 ',
+          icon_hl = 'Title',
+          desc = 'Quit',
+          desc_hl = 'String',
+          key = 'q',
+          key_hl = 'Number',
+          action = 'qa'
+        },
       },
       footer = {
         '',
