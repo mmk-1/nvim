@@ -7,7 +7,7 @@ local M = {
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<C-x>d", "<cmd>Oil<cr>", desc = "Open Oil" },
+    { "<leader>dd", "<cmd>Oil<cr>", desc = "Open Oil" },
   }
 }
 
