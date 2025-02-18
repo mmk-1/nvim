@@ -12,6 +12,9 @@ function M.config()
 			javascript = { "prettier" },
 			typescript = { "prettier" },
 			jsx = { "prettier" },
+			cpp = { "clang_format" },
+			c = { "clang_format" },
+			h = { "clang_format" },
 		},
 
 		format_on_save = {
@@ -20,12 +23,12 @@ function M.config()
 		},
 
 		-- Customize formatters
-		-- formatters = {
-		--   clang_format = {
-		--     "-style",
-		--     "{IndentWidth: 4}",
-		--   },
-		-- },
+		clang_format = {
+			formatters = {
+				"-style",
+				"{IndentWidth: 4}",
+			},
+		},
 	})
 end
 

@@ -37,6 +37,8 @@ function M.config()
 	lspconfig.ts_ls.setup({})
 	lspconfig.nixd.setup({})
 	lspconfig.pyright.setup({})
+	lspconfig.bashls.setup({})
+	lspconfig.clangd.setup({})
 end
 
 return M
