@@ -10,7 +10,7 @@ local M = {
     workspaces = {
       {
         name = "master",
-        path = "~/Dropbox/obsidian/master",
+        path = "~/Koofr/obsidian/master",
       },
     },
     attachments = {
