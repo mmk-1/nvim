@@ -1,52 +1,117 @@
 local M = {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    {
+      'rafamadriz/friendly-snippets',
+    },
+    {
+      'echasnovski/mini.nvim',
+      version = '*',
+    },
+    {
+      "folke/lazydev.nvim",
+    },
+  },
   version = '1.*',
   opts_extend = { "sources.default" }
 }
 
+-- Important keybindings:
+--  C-k -> Signature
+--  C-space -> Open doc window
+
 function M.config()
-  require("blink.cmp").setup({
-    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-    -- 'super-tab' for mappings similar to vscode (tab to accept)
-    -- 'enter' for enter to accept
-    -- 'none' for no mappings
-    --
-    -- All presets have the following mappings:
-    -- C-space: Open menu or open docs if already open
-    -- C-n/C-p or Up/Down: Select next/previous item
-    -- C-e: Hide menu
-    -- C-k: Toggle signature help (if signature.enabled = true)
-    --
-    -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'enter' },
+  local cmp = require('blink.cmp')
+
+  -- You need to change colors using the highlight groups
+  vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#49443C" })
+  vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#C8F902" })
+
+  cmp.setup({
+    keymap = { preset = 'super-tab' },
 
     appearance = {
-      -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono'
     },
 
-    -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
+    completion = {
+      documentation = {
+        window = { border = 'rounded', },
+        auto_show = false
+      },
 
-    -- Default list of enabled providers defined so that you can extend it
-    -- elsewhere in your config, without redefining it, due to `opts_extend`
-    sources = {
-      default = { 'snippets', 'lsp', 'path', 'buffer' },
+      menu = {
+        draw = {
+          components = {
+            kind_icon = {
+              text = function(ctx)
+                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                return kind_icon
+              end,
+              -- Custom highlight for icons
+              highlight = function(ctx)
+                -- Define custom highlights based on completion kind
+                local highlights = {
+                  Text = "String",         -- Green
+                  Method = "Function",     -- Blue
+                  Function = "Function",   -- Blue
+                  Constructor = "Type",    -- Yellow
+                  Variable = "Identifier", -- White
+                  Class = "Type",          -- Yellow
+                  Interface = "Type",      -- Yellow
+                  Module = "Include",      -- Purple
+                  Property = "@property",  -- Cyan
+                  Keyword = "Keyword",     -- Purple
+                  Snippet = "Label",       -- Orange
+                  Color = "Special",       -- Purple
+                  File = "Directory",      -- Blue
+                  Folder = "Directory",    -- Blue
+                }
+                return highlights[ctx.kind] or "Normal"
+              end,
+            },
+            kind = {
+              highlight = function(_)
+                return "Comment" -- This will make the text gray
+              end,
+            }
+          }
+        },
+        border = 'rounded'
+      },
     },
 
-    -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-    --
-    -- See the fuzzy documentation for more information
+    sources = {
+      default = {
+        'lazydev',
+        'snippets',
+        'lsp',
+        'path',
+        'buffer'
+      },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          -- make lazydev completions top priority (see `:h blink.cmp`)
+          score_offset = 100,
+        },
+      },
+    },
+
     fuzzy = { implementation = "prefer_rust_with_warning" },
-    signature = { enabled = false }, -- this conflics with some other plugin when true (two popup windows)
+
+    signature = {
+      enabled = false
+    }, -- this conflics with some other plugin when true (two popup windows)
 
     cmdline = {
       enabled = true,
-      completion = { menu = { auto_show = true, }, }
+      completion = {
+        menu = {
+          auto_show = false,
+        },
+      }
     },
   })
 end
