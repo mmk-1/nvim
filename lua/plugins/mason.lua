@@ -16,11 +16,16 @@ function M.config()
     "pyright",
     "bashls",
     "jsonls",
+    "eslint",
 
     -- Formatters
     -- "stylua",
     -- "alejandra",
-    -- "prettier",
+    --"prettier",
+
+    -- Linters
+    --"eslint_d",
+
   }
 
   require("mason").setup {
@@ -35,4 +40,3 @@ function M.config()
 end
 
 return M
-
