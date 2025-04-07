@@ -17,15 +17,6 @@ function M.config()
     "bashls",
     "jsonls",
     "eslint",
-
-    -- Formatters
-    -- "stylua",
-    -- "alejandra",
-    --"prettier",
-
-    -- Linters
-    --"eslint_d",
-
   }
 
   require("mason").setup {
