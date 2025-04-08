@@ -1,10 +1,11 @@
-return  { 
+return {
   {
-    "LunarVim/primer.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
+    name = "catpuccin",
     config = function()
-      vim.cmd([[colorscheme primer_dark]])
+      vim.cmd([[colorscheme catppuccin-macchiato]])
     end,
   },
 }
