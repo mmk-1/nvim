@@ -46,10 +46,6 @@ function M.config()
       },
     },
   })
-
-  -- Folding
-  -- vim.wo.foldmethod = 'expr'
-  -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 end
 
 return M
