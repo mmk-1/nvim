@@ -5,11 +5,13 @@ local M = {
       'rafamadriz/friendly-snippets',
     },
     {
-      'echasnovski/mini.nvim',
-      version = '*',
+      "folke/lazydev.nvim",
     },
     {
-      "folke/lazydev.nvim",
+      "onsails/lspkind.nvim",
+    },
+    {
+      "nvim-tree/nvim-web-devicons",
     },
   },
   version = '1.*',
@@ -45,11 +47,29 @@ function M.config()
           components = {
             kind_icon = {
               text = function(ctx)
-                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                return kind_icon
+                local icon = ctx.kind_icon
+                if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                  local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                  if dev_icon then
+                    icon = dev_icon
+                  end
+                else
+                  icon = require("lspkind").symbolic(ctx.kind, {
+                    mode = "symbol",
+                  })
+                end
+
+                return icon .. ctx.icon_gap
               end,
-              -- Custom highlight for icons
+
               highlight = function(ctx)
+                if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                  local _, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+                  if dev_hl then
+                    return dev_hl
+                  end
+                end
+
                 -- Define custom highlights based on completion kind
                 local highlights = {
                   Text = "String",         -- Green
