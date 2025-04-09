@@ -21,20 +21,33 @@ return {
       vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
       vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
       vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+      -- Show diagnostics
+      vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
     end
 
+    -- Config for diagnostics
     vim.diagnostic.config({
+      -- For future reference
+      -- virtual_text = {
+      --   prefix = "●",
+      --   spacing = 4,
+      -- },
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
-          [vim.diagnostic.severity.HINT] = "󰌵 ",
-          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "󰌵",
+          [vim.diagnostic.severity.INFO] = "",
         },
       },
       severity_sort = true,
       float = {
+        focusable = true,
+        source = "always",
+        style = "minimal",
         border = "rounded",
+        header = "",
+        prefix = "",
       },
     })
 

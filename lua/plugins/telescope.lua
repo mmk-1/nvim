@@ -13,4 +13,10 @@ local M = {
 	},
 }
 
+function M.config()
+	require('telescope').setup()
+
+	require
+
+
 return M
