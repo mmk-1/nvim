@@ -14,6 +14,7 @@ function M.config()
       cpp = { "clang_format" },
       c = { "clang_format" },
       h = { "clang_format" },
+      rust = { "rustfmt" },
     },
 
     format_on_save = {

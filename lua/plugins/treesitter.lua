@@ -18,6 +18,7 @@ function M.config()
       "python",
       "javascript",
       "typescript",
+      "rust",
       "tsx",
       "css",
       "html",
