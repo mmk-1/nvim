@@ -1,4 +1,4 @@
-local M = {
+return {
   "windwp/nvim-ts-autotag",
   ft = {
     "javascript",
@@ -9,10 +9,5 @@ local M = {
     "tsx"
   },
   event = { "BufReadPre", "BufNewFile" },
+  opts = {},
 }
-
-function M.config()
-  require("nvim-ts-autotag").setup()
-end
-
-return M

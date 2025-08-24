@@ -1,13 +1,8 @@
-local M = {
+return {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
-}
-
-function M.config()
-  local treesitter = require("nvim-treesitter.configs")
-
-  treesitter.setup({
+  opts = {
     ensure_installed = {
       "lua",
       "luadoc",
@@ -46,7 +41,8 @@ function M.config()
         node_decremental = "<leader>sd",
       },
     },
-  })
-end
-
-return M
+  },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end
+}

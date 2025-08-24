@@ -1,4 +1,4 @@
-local M = {
+return {
   'stevearc/oil.nvim',
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
@@ -7,12 +7,7 @@ local M = {
     { "<leader>dd", "<cmd>Oil<cr>", desc = "Open Oil" },
   },
   lazy = false,
+  opts = {
+    default_file_explorer = true
+  }
 }
-
-function M.config()
-  require("oil").setup({
-    default_file_explorer = true,
-  })
-end
-
-return M

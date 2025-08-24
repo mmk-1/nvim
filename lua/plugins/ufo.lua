@@ -1,27 +1,24 @@
-local M = {
+-- Plugin to fold/unfold code blocks via treesitter
+return {
   "kevinhwang91/nvim-ufo",
   dependencies = {
     "kevinhwang91/promise-async",
   },
-}
-
--- Minimal config for UFO
-function M.config()
-  vim.o.foldcolumn = '1' -- '0' is not bad
-  vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-  vim.o.foldlevelstart = 99
-  vim.o.foldenable = true
-
-  -- Using ufo provider need remap `zR` and `zM`.
-  vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-  vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-  -- Fold using treesitter as provider
-  require('ufo').setup({
-    provider_selector = function(bufnr, filetype, buftype)
+  opts = {
+    provider_selector = function()
       return { 'treesitter', 'indent' }
     end
-  })
-end
+  },
+  config = function(_, opts)
+    vim.o.foldcolumn = '1' -- '0' is not bad
+    vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+    vim.o.foldlevelstart = 99
+    vim.o.foldenable = true
 
-return M
+    -- Using ufo provider need remap `zR` and `zM`.
+    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+    require('ufo').setup(opts)
+  end
+
+}

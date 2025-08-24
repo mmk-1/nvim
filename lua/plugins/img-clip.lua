@@ -1,4 +1,4 @@
-local M = {
+return {
   "HakonHarnes/img-clip.nvim",
   event = "VeryLazy",
   opts = {
@@ -10,5 +10,3 @@ local M = {
     -- { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
   },
 }
-
-return M

@@ -1,4 +1,4 @@
-local M = {
+return {
   "epwalsh/obsidian.nvim",
   version = "*",
   lazy = false,
@@ -23,5 +23,3 @@ local M = {
     { "<leader>n/", "<cmd>ObsidianSearch<cr>",      desc = "Search Through Notes" },
   },
 }
-
-return M

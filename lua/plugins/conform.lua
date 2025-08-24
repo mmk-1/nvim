@@ -1,10 +1,6 @@
-local M = {
+return {
   "stevearc/conform.nvim",
-}
-
-function M.config()
-  require("conform").setup({
-    -- Define your formatters by filetype
+  opts = {
     formatters_by_ft = {
       lua = { "stylua" },
       nix = { "alejandra" },
@@ -22,14 +18,11 @@ function M.config()
       timeout_ms = 500,
     },
 
-    -- Customize formatters
     clang_format = {
       formatters = {
         "-style",
         "{IndentWidth: 4}",
       },
     },
-  })
-end
-
-return M
+  }
+}

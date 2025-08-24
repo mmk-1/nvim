@@ -1,4 +1,4 @@
-local M = {
+return {
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
@@ -11,5 +11,3 @@ local M = {
     },
   },
 }
-
-return M

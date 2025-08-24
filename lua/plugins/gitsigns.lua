@@ -1,10 +1,5 @@
-local M = {
+return {
   'lewis6991/gitsigns.nvim',
   lazy = false,
+  opts = {},
 }
-
-function M.config()
-  require('gitsigns').setup() -- using defaults
-end
-
-return M

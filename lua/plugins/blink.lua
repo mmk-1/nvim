@@ -1,4 +1,8 @@
-local M = {
+-- Plugin for autocompletion windows and stuff (replaces nvim-cmp)
+-- Important keybindings:
+--  C-k -> Signature
+--  C-space -> Open doc window
+return {
   'saghen/blink.cmp',
   dependencies = {
     {
@@ -15,21 +19,8 @@ local M = {
     },
   },
   version = '1.*',
-  opts_extend = { "sources.default" }
-}
-
--- Important keybindings:
---  C-k -> Signature
---  C-space -> Open doc window
-
-function M.config()
-  local cmp = require('blink.cmp')
-
-  -- You need to change colors using the highlight groups
-  vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#49443C" })
-  vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#C8F902" })
-
-  cmp.setup({
+  opts_extend = { "sources.default" },
+  opts = {
     keymap = { preset = 'super-tab' },
 
     appearance = {
@@ -133,7 +124,12 @@ function M.config()
         },
       }
     },
-  })
-end
+  },
+  config = function(_, opts)
+    -- You need to change colors using the highlight groups
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#49443C" })
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#C8F902" })
 
-return M
+    require("blink.cmp").setup(opts)
+  end
+}

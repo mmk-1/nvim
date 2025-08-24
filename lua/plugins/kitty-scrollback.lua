@@ -1,11 +1,6 @@
-local M = {
+return {
   'mikesmithgh/kitty-scrollback.nvim',
   enabled = true,
   lazy = true,
+  opts = {},
 }
-
-function M.config()
-  require('kitty-scrollback').setup()
-end
-
-return M

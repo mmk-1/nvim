@@ -1,4 +1,4 @@
-local M = {
+return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   keys = {
@@ -10,13 +10,5 @@ local M = {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
+  opts = {}, -- This will automatically run require(PLUGIN).setup(opts) when set!
 }
-
-function M.config()
-  require("which-key").setup({
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-  })
-end
-
-return M

@@ -1,7 +1,7 @@
-local M = {
+return {
   "nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
-  config = true,
+  opts = {},
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     { "<leader>fc", "<cmd>Telescope commands<cr>",   desc = "Find commands" },
@@ -12,5 +12,3 @@ local M = {
     { "<leader>bb", "<cmd>Telescope buffers<cr>",    desc = "Find buffers" },
   },
 }
-
-return M
