@@ -32,6 +32,10 @@ local lsp_attach = function(client, bufnr)
   vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   -- Show diagnostics
   vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+  -- Telescope LSP pickers
+  vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+  vim.keymap.set("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+  vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
 end
 
 -- Config for diagnostics
