@@ -1,17 +1,38 @@
 return {
-  "catppuccin/nvim",
-  lazy = false,
-  priority = 1000,
-  name = "catppuccin",
-  opts = {
-    integrations = {
-      -- This integration doesn't work, so i disabled
-      -- and defined my own in nvim-navic.lua
-      navic = false,
+  {
+    "EdenEast/nightfox.nvim",
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("moonfly")
+    end,
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    name = "github-theme",
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      integrations = {
+        navic = false,
+      },
     },
   },
-  config = function(_, opts)
-    vim.cmd([[colorscheme catppuccin-macchiato]])
-    require("catppuccin").setup(opts)
-  end,
+  {
+    "D0nw0r/dark2026.nvim",
+  },
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    build = false,
+  },
+  {
+    "decaycs/decay.nvim",
+    name = "decay",
+  }
 }
