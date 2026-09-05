@@ -52,7 +52,7 @@ return {
 
           map("gd", vim.lsp.buf.definition, "LSP: definition")
           map("gD", vim.lsp.buf.declaration, "LSP: declaration")
-          map("<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", "LSP: workspace symbols")
+          map("<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP: workspace symbols")
         end,
       })
     end,

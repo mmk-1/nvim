@@ -1,38 +1,44 @@
-return {
+local themes = {
   {
-    "EdenEast/nightfox.nvim",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      overrides = function(colors)
+        return {
+          -- cyberdream already has fg color as #fff
+          FloatBorder = { fg = colors.fg, bg = colors.bg },
+        }
+      end,
+    },
+  },
+  {
+    "Shatur/neovim-ayu",
+    lazy = true,
   },
   {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
+    lazy = true,
   },
   {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
+    "folke/tokyonight.nvim",
+    lazy = true,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    lazy = true,
     opts = {
       integrations = {
         navic = false,
       },
     },
   },
-  {
-    "D0nw0r/dark2026.nvim",
-  },
-  {
-    "nyoom-engineering/oxocarbon.nvim",
-    build = false,
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("oxocarbon")
-    end,
-  },
-  {
-    "decaycs/decay.nvim",
-    name = "decay",
-  }
 }
+
+vim.schedule(function()
+  vim.cmd.colorscheme("cyberdream")
+end)
+
+return themes
