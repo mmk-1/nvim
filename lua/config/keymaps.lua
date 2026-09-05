@@ -6,12 +6,12 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Move highlighted blocks
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left" })
+keymap("v", ">", ">gv", { noremap = true, silent = true, desc = "Indent right" })
 
--- Save like Emacs!
-keymap("n", "<C-x><C-s>", ":w<CR>", opts)
+keymap("n", "<leader>bl", "<C-^>", { noremap = true, silent = true, desc = "Toggle last buffer" })
+keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { noremap = true, silent = true, desc = "Close buffer" })

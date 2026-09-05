@@ -19,7 +19,18 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    { import = "plugins.languages" },
   },
   install = { colorscheme = { "primer_dark" } },
   checker = { enabled = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+      },
+    },
+  },
 })

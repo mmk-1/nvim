@@ -1,36 +1,20 @@
 return {
   "mrjones2014/smart-splits.nvim",
   version = ">=1.0.0",
-  opts = {
-    resize_mode = {
-      silent = true,
-      hooks = {
-        on_enter = function()
-          vim.notify("Entering resize mode")
-        end,
-        on_leave = function()
-          vim.notify("Exiting resize mode, bye")
-        end,
-      },
-    },
-  },
-  config = function(_, opts)
-    vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
-    vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
-    vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
-    vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
-    -- moving between splits
-    vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-    vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-    vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-    vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
-    vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
-    -- swapping buffers between windows
-    vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-    vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-    vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-    vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+  lazy = false,
+  config = function()
+    require("smart-splits").setup({})
 
-    require('smart-splits').setup(opts)
-  end
+    -- resize (Alt)
+    vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left, { desc = "Resize left" })
+    vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down, { desc = "Resize down" })
+    vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up, { desc = "Resize up" })
+    vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right, { desc = "Resize right" })
+
+    -- move (Ctrl)
+    vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left, { desc = "Move to left split" })
+    vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down, { desc = "Move to below split" })
+    vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up, { desc = "Move to above split" })
+    vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right, { desc = "Move to right split" })
+  end,
 }

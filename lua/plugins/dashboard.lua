@@ -37,7 +37,7 @@ return {
             desc = 'Sessions',
             desc_hl = 'String',
             key = 's',
-            keymap = '<leader>wr',
+            keymap = '<leader>sr',
             key_hl = 'Number',
             action = 'SessionSearch'
           },
