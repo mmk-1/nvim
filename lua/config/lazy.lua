@@ -23,6 +23,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "primer_dark" } },
   checker = { enabled = false },
+  rocks = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = {

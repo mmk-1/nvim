@@ -13,6 +13,7 @@ return {
   lazy = false,
   opts = {
     image = { enabled = true },
+    statuscolumn = { enabled = true, folds = {open = true } },
     picker = {
       enabled = true,
       sources = {

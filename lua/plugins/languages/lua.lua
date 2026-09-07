@@ -1,8 +1,24 @@
 return {
   { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "lua", "luadoc", "luap" } } },
-  { "mason-org/mason-lspconfig.nvim", opts = { ensure_installed = { "lua_ls" } } },
-  { "neovim/nvim-lspconfig", opts = { servers = { lua_ls = {} } } },
-  { "stevearc/conform.nvim", opts = { formatters_by_ft = { lua = { "stylua" } } } },
+  { "neovim/nvim-lspconfig", opts = { servers = { emmylua_ls = {} } } },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = { lua = { "stylua" } },
+      formatters = {
+        stylua = {
+          prepend_args = {
+            "--indent-type",
+            "Spaces",
+            "--indent-width",
+            "2",
+            "--quote-style",
+            "AutoPreferDouble",
+          },
+        },
+      },
+    },
+  },
   {
     "folke/lazydev.nvim",
     ft = "lua",

@@ -1,8 +1,11 @@
-local themes = {
+return {
   {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("cyberdream")
+    end,
     opts = {
       overrides = function(colors)
         return {
@@ -29,16 +32,5 @@ local themes = {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = true,
-    opts = {
-      integrations = {
-        navic = false,
-      },
-    },
   },
 }
-
-vim.schedule(function()
-  vim.cmd.colorscheme("cyberdream")
-end)
-
-return themes

@@ -1,6 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" },
+  branch = "main",
+  lazy = false,
   build = ":TSUpdate",
   opts_extend = { "ensure_installed" },
   opts = {
@@ -15,26 +16,25 @@ return {
       "json",
       "toml",
       "kdl",
-      "rust",
-    },
-    indent = {
-      enable = true,
-    },
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<leader>ts",
-        node_incremental = "<leader>ti",
-        scope_incremental = "<leader>tc",
-        node_decremental = "<leader>td",
-      },
     },
   },
   config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+    local parsers = opts.ensure_installed or {}
+    if #parsers > 0 then
+      require("nvim-treesitter").install(parsers)
+    end
+
+    -- Features are not enabled by the installer; see :h nvim-treesitter-quickstart
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function()
+        local ok = pcall(vim.treesitter.start)
+        if not ok then
+          return
+        end
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo[0][0].foldmethod = "expr"
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
   end,
 }

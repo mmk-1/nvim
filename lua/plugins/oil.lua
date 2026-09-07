@@ -58,7 +58,13 @@ return {
     { "malewicz1337/oil-git.nvim" },
   },
   keys = {
-    { "<leader>dd", function() toggle_oil_float() end, desc = "Open Oil" },
+    {
+      "<leader>dd",
+      function()
+        toggle_oil_float()
+      end,
+      desc = "Open Oil",
+    },
   },
   lazy = false,
   opts = {

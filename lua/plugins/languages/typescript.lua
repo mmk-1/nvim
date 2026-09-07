@@ -3,6 +3,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "javascript", "typescript", "tsx" } },
   },
+  { "mason-org/mason-lspconfig.nvim", opts = { ensure_installed = { "vtsls" } } },
+  { "neovim/nvim-lspconfig", opts = { servers = { vtsls = {} } } },
   {
     "stevearc/conform.nvim",
     opts = {
@@ -15,22 +17,16 @@ return {
     },
   },
   {
-    "pmizio/typescript-tools.nvim",
-    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-      "saghen/blink.cmp",
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "jsx",
+      "tsx",
     },
-    opts = function()
-      return {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
-      }
-    end,
-  },
-  {
-    "dmmulroy/tsc.nvim",
-    cmd = { "TSC" },
-    config = true,
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
   },
 }

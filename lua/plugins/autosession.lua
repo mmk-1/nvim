@@ -3,9 +3,9 @@ return {
   lazy = false,
   keys = {
     -- Uses vim.ui.select (Snacks picker)
-    { '<leader>sr', '<cmd>SessionSearch<CR>',         desc = 'Session search' },
-    { '<leader>ss', '<cmd>SessionSave<CR>',           desc = 'Save session' },
-    { '<leader>sa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
+    { '<leader>sr', '<cmd>AutoSession search<CR>', desc = 'Session search' },
+    { '<leader>sw', '<cmd>AutoSession save<CR>',   desc = 'Save session' },
+    { '<leader>sa', '<cmd>AutoSession toggle<CR>', desc = 'Toggle autosave' },
   },
 
   ---enables autocomplete for opts
