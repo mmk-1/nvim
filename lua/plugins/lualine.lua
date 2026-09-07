@@ -20,7 +20,11 @@ return {
       lualine_b = { "branch", "diff", "diagnostics" },
       lualine_c = { { "filename", path = 1 } },
       lualine_x = { "lsp_status", "filetype" },
-      lualine_y = {},
+      lualine_y = {
+        function()
+          return ("tabs: %d/%d"):format(vim.fn.tabpagenr(), vim.fn.tabpagenr("$"))
+        end,
+      },
       lualine_z = { "location" },
     },
     extensions = { "oil", "lazy", "trouble", "quickfix" },

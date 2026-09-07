@@ -10,6 +10,7 @@ return {
     { "<leader>gc", "<cmd>Neogit commit<cr>", desc = "Commit" },
   },
   opts = {
+    graph_style = "kitty",
     integrations = {
       snacks = true,
     },

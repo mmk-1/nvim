@@ -52,6 +52,35 @@ return {
   },
   keys = {
     { "<leader>ff", function() Snacks.picker.files() end,       desc = "Find files" },
+    {
+      "<leader>ft",
+      function()
+        local items = {}
+        for i, tab in ipairs(vim.api.nvim_list_tabpages()) do
+          local win = vim.api.nvim_tabpage_get_win(tab)
+          local name = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+          if name:find("diffview", 1, true) or name:find("Diffview", 1, true) then
+            name = "Diffview"
+          elseif name:find("Neogit", 1, true) then
+            name = "Neogit"
+          else
+            name = name ~= "" and vim.fn.fnamemodify(name, ":t") or "[No Name]"
+          end
+          items[#items + 1] = { idx = i, text = i .. " " .. name, tab = tab }
+        end
+        Snacks.picker.pick({
+          title = "Tabs",
+          items = items,
+          format = "text",
+          layout = "select",
+          confirm = function(picker, item)
+            picker:close()
+            vim.api.nvim_set_current_tabpage(item.tab)
+          end,
+        })
+      end,
+      desc = "Find tabs",
+    },
     { "<leader>fc", function() Snacks.picker.commands() end,    desc = "Find commands" },
     { "<leader>fk", function() Snacks.picker.keymaps() end,     desc = "Find keymaps" },
     { "<leader>fh", function() Snacks.picker.help() end,        desc = "Find tags" },
