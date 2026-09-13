@@ -5,6 +5,11 @@ return {
     { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview" },
   },
   opts = {
+    view = {
+      merge_tool = {
+        layout = "diff3_mixed",
+      },
+    },
     file_panel = {
       win_config = {
         width = 24,

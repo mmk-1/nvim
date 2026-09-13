@@ -57,6 +57,9 @@ return {
 
           map("gd", vim.lsp.buf.definition, "LSP: definition")
           map("gD", vim.lsp.buf.declaration, "LSP: declaration")
+          map("K", function()
+            vim.lsp.buf.hover({ border = "rounded" })
+          end, "LSP: hover")
           map("<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP: workspace symbols")
         end,
       })

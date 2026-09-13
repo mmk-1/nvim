@@ -1,6 +1,24 @@
 return {
   { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "lua", "luadoc", "luap" } } },
-  { "neovim/nvim-lspconfig", opts = { servers = { emmylua_ls = {} } } },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        emmylua_ls = {
+          settings = {
+            emmylua = {
+              runtime = { version = "LuaJIT" },
+              diagnostics = { globals = { "vim" } },
+              workspace = {
+                -- Neovim's own API/types plus loaded plugin runtime files.
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+            },
+          },
+        },
+      },
+    },
+  },
   {
     "stevearc/conform.nvim",
     opts = {

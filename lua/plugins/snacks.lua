@@ -13,7 +13,8 @@ return {
   lazy = false,
   opts = {
     image = { enabled = true },
-    statuscolumn = { enabled = true, folds = {open = true } },
+    lazygit = {},
+    statuscolumn = { enabled = false },
     picker = {
       enabled = true,
       sources = {
@@ -51,6 +52,7 @@ return {
     },
   },
   keys = {
+    { "<leader>gl", function() Snacks.lazygit() end,          desc = "LazyGit" },
     { "<leader>ff", function() Snacks.picker.files() end,       desc = "Find files" },
     {
       "<leader>ft",
