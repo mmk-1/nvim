@@ -17,7 +17,7 @@ return {
     },
     config = function(_, opts)
       vim.lsp.config("*", {
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
+        capabilities = require("blink.cmp").get_lsp_capabilities(nil, true),
       })
 
       for name, server_opts in pairs(opts.servers) do
@@ -49,6 +49,10 @@ return {
         callback = function(ev)
           local map = function(lhs, rhs, desc)
             vim.keymap.set("n", lhs, rhs, { buffer = ev.buf, desc = desc })
+          end
+          
+          if vim.bo[ev.buf].filetype == "rust" then
+            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
           end
 
           map("gd", vim.lsp.buf.definition, "LSP: definition")

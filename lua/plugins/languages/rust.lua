@@ -12,6 +12,9 @@ return {
           settings = {
             ["rust-analyzer"] = {
               check = { command = "clippy" },
+              inlayHints = {
+                typeHints = { enable = true },
+              },
             },
           },
         },

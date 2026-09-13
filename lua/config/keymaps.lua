@@ -14,8 +14,13 @@ keymap("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left" })
 keymap("v", ">", ">gv", { noremap = true, silent = true, desc = "Indent right" })
 
 keymap("n", "<leader>ss", "<cmd>w<cr>", { noremap = true, silent = true, desc = "Save buffer" })
+keymap("n", "<leader>sq", "<cmd>q<cr>", { noremap = true, silent = true, desc = "Quit Neovim" })
 keymap("n", "<leader>bl", "<C-^>", { noremap = true, silent = true, desc = "Toggle last buffer" })
 keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { noremap = true, silent = true, desc = "Close buffer" })
+
+-- Clear search match highlights when returning to, or already in, Normal mode.
+keymap("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { noremap = true, silent = true, desc = "Clear search highlights" })
+keymap("i", "<Esc>", "<Esc><cmd>nohlsearch<CR>", { noremap = true, silent = true, desc = "Exit Insert mode and clear search highlights" })
 
 keymap("n", "<leader>tf", "za", { desc = "Toggle fold" })
 keymap("n", "<leader>to", "zR", { desc = "Open all folds" })
