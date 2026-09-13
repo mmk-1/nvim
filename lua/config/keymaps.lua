@@ -25,3 +25,15 @@ keymap("i", "<Esc>", "<Esc><cmd>nohlsearch<CR>", { noremap = true, silent = true
 keymap("n", "<leader>tf", "za", { desc = "Toggle fold" })
 keymap("n", "<leader>to", "zR", { desc = "Open all folds" })
 keymap("n", "<leader>tF", "zM", { desc = "Close all folds" })
+
+-- keep the cursor in a comfortable reading position while navigating.
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Half-page down and center cursor" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Half-page up and center cursor" })
+keymap("n", "n", "nzzzv", { desc = "Next search result and center cursor" })
+keymap("n", "N", "Nzzzv", { desc = "Previous search result and center cursor" })
+keymap("c", "<CR>", function()
+  if vim.fn.getcmdtype() == "/" or vim.fn.getcmdtype() == "?" then
+    return "<CR><C-\\><C-n>zz"
+  end
+  return "<CR>"
+end, { expr = true, desc = "Run search and center cursor" })
