@@ -27,6 +27,10 @@ return {
 
       vim.diagnostic.config({
         severity_sort = true,
+        virtual_text = false,
+        virtual_lines = {
+          current_line = true,
+        },
         float = {
           focusable = true,
           source = true,
