@@ -122,6 +122,9 @@ return {
         menu = {
           auto_show = false,
         },
+        list = {
+          selection = { preselect = false, auto_insert = true },
+        },
       }
     },
   },
