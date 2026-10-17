@@ -31,7 +31,7 @@ return {
         keys = {
           { icon = "󰏗 ", key = "p", desc = "Projects", action = "<leader>pp" },
           { icon = "󰆓 ", key = "s", desc = "Sessions", action = "<leader>sr" },
-          { icon = "󰥨 ", key = "e", desc = "File Browser", action = ":Oil --float ~" },
+          { icon = "󰥨 ", key = "e", desc = "File Browser", action = ":Oil ~" },
           {
             icon = "󰈞 ",
             key = "f",
